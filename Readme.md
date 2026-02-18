@@ -31,8 +31,9 @@ A web application that emulates a **La Crosse Technology** weather station LCD d
 - SVG weather icons drawn programmatically
 
 ## Design Method
-Cursor request:
-"Create a web app to display the information in this mock up image. Use services to accurately display the information and emulates this display correctly"
-<img width="935" height="841" alt="image" src="https://github.com/user-attachments/assets/d5585edc-41d6-42b3-88c8-9a1ca4e81245" />
-Result:
+- Cursor request:
+- "Create a web app to display the information in this mock up image. Use services to accurately display the information and emulates this display correctly"
+<img width="585" height="526" alt="image" src="https://github.com/user-attachments/assets/d5585edc-41d6-42b3-88c8-9a1ca4e81245" />
+
+- Result:
 <img width="585" height="567" alt="image" src="https://github.com/user-attachments/assets/54e25a11-8953-44ef-a153-1c3dac4c0959" />
