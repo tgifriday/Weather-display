@@ -29,7 +29,13 @@
         </div>
 
         <div class="panel outdoor-panel">
-          <div class="panel-label top-label">OUTDOOR <span class="battery-icon" id="outdoor-battery">&#x1F50B;</span></div>
+          <div class="panel-label top-label">OUTDOOR
+            <svg class="battery-icon" viewBox="0 0 24 12" width="18" height="9">
+              <rect x="1" y="1" width="19" height="10" rx="1.5" fill="none" stroke="#4a4a32" stroke-width="1.5"/>
+              <rect x="20" y="3.5" width="3" height="5" rx="1" fill="#4a4a32"/>
+              <rect x="3" y="3" width="15" height="6" rx="0.5" fill="#4a4a32"/>
+            </svg>
+          </div>
           <div class="temp-display">
             <span class="big-number" id="outdoor-temp">--</span>
             <span class="unit-label">°F</span>
@@ -44,6 +50,14 @@
               <span class="medium-number" id="pressure-value">--.-</span>
               <span class="unit-small">inHg</span>
             </div>
+          </div>
+          <div class="thermometer-icon">
+            <svg viewBox="0 0 24 60" width="16" height="40">
+              <rect x="8" y="2" width="8" height="38" rx="4" fill="none" stroke="#4a4a32" stroke-width="2"/>
+              <circle cx="12" cy="48" r="8" fill="none" stroke="#4a4a32" stroke-width="2"/>
+              <rect x="10" y="18" width="4" height="24" rx="2" fill="#4a4a32"/>
+              <circle cx="12" cy="48" r="5" fill="#4a4a32"/>
+            </svg>
           </div>
           <div class="pressure-history-section">
             <div class="panel-label small-label">PRESSURE HISTORY</div>
@@ -66,7 +80,11 @@
 
         <div class="panel humidity-panel">
           <div class="panel-label">HUMIDITY<br>LEVEL</div>
-          <div class="humidity-icon">&#x1F4A7;</div>
+          <div class="humidity-icon">
+            <svg viewBox="0 0 20 28" width="16" height="22">
+              <path d="M10 2 C10 2 2 14 2 18 a8 8 0 0 0 16 0 C18 14 10 2 10 2z" fill="#4a4a32" stroke="none"/>
+            </svg>
+          </div>
           <div class="humidity-display">
             <span class="big-number" id="outdoor-humidity">--</span>
             <span class="unit-label">%</span>
@@ -81,7 +99,11 @@
           </div>
           <div class="date-section">
             <span class="date-month" id="date-month">---</span>
-            <span class="wireless-icon">&#x1F4E1;</span>
+            <svg class="wireless-icon" viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 20 a2 2 0 1 0 0 0.01z" fill="#4a4a32"/>
+              <path d="M6 14 a8.5 8.5 0 0 1 12 0" fill="none" stroke="#4a4a32" stroke-width="2" stroke-linecap="round"/>
+              <path d="M2 10 a14 14 0 0 1 20 0" fill="none" stroke="#4a4a32" stroke-width="2" stroke-linecap="round"/>
+            </svg>
             <span class="date-day" id="date-day">--</span>
           </div>
           <div class="day-section" id="day-name">-------</div>
@@ -94,8 +116,15 @@
               <span class="medium-number" id="indoor-temp">--</span>
               <span class="unit-small">°F</span>
             </div>
+            <span class="indoor-separator">:</span>
             <div class="indoor-humidity-section">
-              <span class="indoor-humidity-label">HUMIDITY <span class="battery-icon-small">&#x1F50B;</span></span>
+              <span class="indoor-humidity-label">HUMIDITY
+                <svg class="battery-icon-small" viewBox="0 0 24 12" width="14" height="7">
+                  <rect x="1" y="1" width="19" height="10" rx="1.5" fill="none" stroke="#4a4a32" stroke-width="1.5"/>
+                  <rect x="20" y="3.5" width="3" height="5" rx="1" fill="#4a4a32"/>
+                  <rect x="3" y="3" width="15" height="6" rx="0.5" fill="#4a4a32"/>
+                </svg>
+              </span>
               <div class="indoor-humidity-value">
                 <span class="medium-number" id="indoor-humidity">--</span>
                 <span class="unit-small">%</span>

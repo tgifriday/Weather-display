@@ -43,6 +43,25 @@ body {
   overflow: hidden;
   border: 2px solid #555;
   box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.lcd-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.015) 2px,
+    rgba(0,0,0,0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .panel {
@@ -208,16 +227,15 @@ body {
 }
 
 .battery-icon {
-  font-size: 11px;
   margin-left: 6px;
-  filter: grayscale(1) brightness(0.5);
+  vertical-align: middle;
 }
 
 /* Pressure Panel */
 .pressure-panel {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 6px;
   padding: 10px 12px;
 }
 
@@ -225,7 +243,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 90px;
+  min-width: 80px;
+}
+
+.thermometer-icon {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
 }
 
 .pressure-value {
@@ -276,7 +300,7 @@ body {
 
 .chart-bar .bar-fill {
   width: 100%;
-  background: #4a6a30;
+  background: linear-gradient(to top, #2d5a1e, #4a8a30, #6aaa40);
   border-radius: 1px;
   min-height: 0;
   transition: height 0.5s ease;
@@ -316,8 +340,6 @@ body {
   position: absolute;
   left: 16px;
   bottom: 24px;
-  font-size: 18px;
-  filter: grayscale(1) brightness(0.5);
 }
 
 .humidity-display {
@@ -372,8 +394,7 @@ body {
 }
 
 .wireless-icon {
-  font-size: 11px;
-  filter: grayscale(1) brightness(0.5);
+  vertical-align: middle;
 }
 
 .date-day {
@@ -416,6 +437,15 @@ body {
   align-items: flex-start;
 }
 
+.indoor-separator {
+  font-family: 'Orbitron', monospace;
+  font-size: 28px;
+  font-weight: 900;
+  color: #2a2a1e;
+  align-self: center;
+  margin: 0 2px;
+}
+
 .indoor-humidity-section {
   display: flex;
   flex-direction: column;
@@ -436,8 +466,8 @@ body {
 }
 
 .battery-icon-small {
-  font-size: 8px;
-  filter: grayscale(1) brightness(0.5);
+  vertical-align: middle;
+  margin-left: 3px;
 }
 
 /* Brand Bar */
