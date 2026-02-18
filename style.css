@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2c2c2c;
+  font-family: 'Orbitron', 'Courier New', monospace;
+  color: #3a3a2e;
+}
+
+.station-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.station-frame {
+  background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+  border-radius: 16px;
+  padding: 14px 14px 8px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  max-width: 580px;
+  width: 100%;
+}
+
+.lcd-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  background: linear-gradient(170deg, #c8c8a0 0%, #b8b890 30%, #c0c098 60%, #b5b58a 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #555;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.panel {
+  padding: 12px 16px;
+  position: relative;
+  min-height: 80px;
+}
+
+/* Grid divider lines */
+.forecast-panel {
+  border-right: 1.5px solid rgba(80,80,60,0.25);
+  border-bottom: 1.5px solid rgba(80,80,60,0.25);
+}
+
+.outdoor-panel {
+  border-bottom: 1.5px solid rgba(80,80,60,0.25);
+}
+
+.pressure-panel {
+  border-right: 1.5px solid rgba(80,80,60,0.25);
+  border-bottom: 1.5px solid rgba(80,80,60,0.25);
+}
+
+.humidity-panel {
+  border-bottom: 1.5px solid rgba(80,80,60,0.25);
+}
+
+.datetime-panel {
+  border-right: 1.5px solid rgba(80,80,60,0.25);
+}
+
+/* Labels */
+.panel-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #5a5a40;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.panel-label.top-label {
+  margin-bottom: 4px;
+}
+
+.panel-label.small-label {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+
+/* LCD digit styling */
+.big-number {
+  font-family: 'Orbitron', monospace;
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  color: #2a2a1e;
+  letter-spacing: -2px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+}
+
+.medium-number {
+  font-family: 'Orbitron', monospace;
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1;
+  color: #2a2a1e;
+  letter-spacing: -1px;
+}
+
+.unit-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  vertical-align: top;
+  margin-left: 2px;
+  color: #3a3a28;
+}
+
+.unit-small {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: top;
+  margin-left: 2px;
+  color: #3a3a28;
+}
+
+/* Forecast Panel */
+.forecast-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.weather-icon {
+  fill: none;
+  stroke: #3a3a28;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.weather-icon.large-icon {
+  width: 72px;
+  height: 58px;
+}
+
+.weather-icon.small-icon {
+  width: 52px;
+  height: 42px;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  position: absolute;
+  top: 10px;
+  right: 16px;
+}
+
+.signal-bars .bar {
+  width: 5px;
+  background: rgba(80,80,60,0.15);
+  border-radius: 1px;
+}
+
+.signal-bars .bar.active {
+  background: #4a4a32;
+}
+
+.signal-bars .bar-1 { height: 5px; }
+.signal-bars .bar-2 { height: 9px; }
+.signal-bars .bar-3 { height: 13px; }
+.signal-bars .bar-4 { height: 17px; }
+
+/* Outdoor Panel */
+.outdoor-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.outdoor-panel .panel-label {
+  width: 100%;
+  text-align: right;
+}
+
+.temp-display {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1;
+  padding-top: 4px;
+}
+
+.battery-icon {
+  font-size: 11px;
+  margin-left: 6px;
+  filter: grayscale(1) brightness(0.5);
+}
+
+/* Pressure Panel */
+.pressure-panel {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.pressure-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 90px;
+}
+
+.pressure-value {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.pressure-value .medium-number {
+  font-size: 28px;
+}
+
+.pressure-history-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pressure-history-section .panel-label {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.pressure-chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  height: 48px;
+  padding: 2px 0;
+}
+
+.chart-bar {
+  width: 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.chart-bar .bar-fill {
+  width: 100%;
+  background: #4a6a30;
+  border-radius: 1px;
+  min-height: 0;
+  transition: height 0.5s ease;
+}
+
+.chart-labels {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.chart-labels span {
+  width: 14px;
+  text-align: center;
+  font-size: 5px;
+  font-weight: 700;
+  color: #5a5a40;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0;
+}
+
+/* Humidity Panel */
+.humidity-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px 16px;
+}
+
+.humidity-panel .panel-label {
+  width: 100%;
+  text-align: center;
+}
+
+.humidity-icon {
+  position: absolute;
+  left: 16px;
+  bottom: 24px;
+  font-size: 18px;
+  filter: grayscale(1) brightness(0.5);
+}
+
+.humidity-display {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1;
+  padding-top: 4px;
+}
+
+/* DateTime Panel */
+.datetime-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 14px;
+}
+
+.time-section {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.ampm {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #3a3a28;
+}
+
+.time-display {
+  font-family: 'Orbitron', monospace;
+  font-size: 42px;
+  font-weight: 900;
+  color: #2a2a1e;
+  letter-spacing: -1px;
+}
+
+.date-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.date-month {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #2a2a1e;
+}
+
+.wireless-icon {
+  font-size: 11px;
+  filter: grayscale(1) brightness(0.5);
+}
+
+.date-day {
+  font-family: 'Orbitron', monospace;
+  font-size: 24px;
+  font-weight: 900;
+  color: #2a2a1e;
+}
+
+.day-section {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: #2a2a1e;
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+
+/* Indoor Panel */
+.indoor-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 16px;
+}
+
+.indoor-panel .panel-label {
+  text-align: center;
+}
+
+.indoor-readings {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex: 1;
+  padding-top: 4px;
+}
+
+.indoor-temp {
+  display: flex;
+  align-items: flex-start;
+}
+
+.indoor-humidity-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.indoor-humidity-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  color: #5a5a40;
+  letter-spacing: 1px;
+}
+
+.indoor-humidity-value {
+  display: flex;
+  align-items: flex-start;
+}
+
+.battery-icon-small {
+  font-size: 8px;
+  filter: grayscale(1) brightness(0.5);
+}
+
+/* Brand Bar */
+.brand-bar {
+  text-align: center;
+  padding: 8px 0 4px;
+  color: #888;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #999;
+}
+
+.brand-name sup {
+  font-size: 7px;
+}
+
+.brand-sub {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  color: #777;
+  margin-top: 1px;
+}
+
+/* Controls below station */
+.controls {
+  background: #3a3a3a;
+  border-radius: 10px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.location-info {
+  color: #aaa;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.control-row label {
+  color: #999;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.control-row input[type="text"],
+.control-row input[type="number"] {
+  background: #2a2a2a;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: #ccc;
+  padding: 6px 10px;
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.control-row input[type="number"] {
+  width: 70px;
+}
+
+.control-row input:focus {
+  border-color: #7a7a50;
+}
+
+.control-row button {
+  background: #5a5a3a;
+  color: #ddd;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.control-row button:hover {
+  background: #6a6a4a;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .station-frame {
+    border-radius: 10px;
+    padding: 8px 8px 6px;
+  }
+
+  .big-number {
+    font-size: 46px;
+  }
+
+  .medium-number {
+    font-size: 28px;
+  }
+
+  .time-display {
+    font-size: 32px;
+  }
+
+  .panel {
+    padding: 8px 10px;
+    min-height: 60px;
+  }
+
+  .pressure-value .medium-number {
+    font-size: 22px;
+  }
+
+  .weather-icon.large-icon {
+    width: 54px;
+    height: 44px;
+  }
+
+  .weather-icon.small-icon {
+    width: 38px;
+    height: 30px;
+  }
+}

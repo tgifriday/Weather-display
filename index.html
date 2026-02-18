@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Station Display</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <div class="station-wrapper">
+    <div class="station-frame">
+      <div class="lcd-screen">
+
+        <!-- Row 1: Forecast + Outdoor Temperature -->
+        <div class="panel forecast-panel">
+          <div class="panel-label top-label">FORECAST</div>
+          <div class="forecast-icons" id="forecast-icons">
+            <svg class="weather-icon large-icon" id="forecast-icon-main" viewBox="0 0 100 80"></svg>
+            <svg class="weather-icon small-icon" id="forecast-icon-trend" viewBox="0 0 80 64"></svg>
+          </div>
+          <div class="signal-bars" id="signal-bars">
+            <div class="bar bar-1 active"></div>
+            <div class="bar bar-2 active"></div>
+            <div class="bar bar-3 active"></div>
+            <div class="bar bar-4"></div>
+          </div>
+        </div>
+
+        <div class="panel outdoor-panel">
+          <div class="panel-label top-label">OUTDOOR <span class="battery-icon" id="outdoor-battery">&#x1F50B;</span></div>
+          <div class="temp-display">
+            <span class="big-number" id="outdoor-temp">--</span>
+            <span class="unit-label">°F</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Pressure + Humidity -->
+        <div class="panel pressure-panel">
+          <div class="pressure-section">
+            <div class="panel-label small-label">RELATIVE<br>PRESSURE</div>
+            <div class="pressure-value">
+              <span class="medium-number" id="pressure-value">--.-</span>
+              <span class="unit-small">inHg</span>
+            </div>
+          </div>
+          <div class="pressure-history-section">
+            <div class="panel-label small-label">PRESSURE HISTORY</div>
+            <div class="pressure-chart" id="pressure-chart">
+              <div class="chart-bars">
+                <div class="chart-bar" data-hour="-24h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-18h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-12h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-9h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-6h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-3h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="0h"><div class="bar-fill"></div></div>
+              </div>
+              <div class="chart-labels">
+                <span>-24h</span><span>-18h</span><span>-12h</span><span>-9h</span><span>-6h</span><span>-3h</span><span>0h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel humidity-panel">
+          <div class="panel-label">HUMIDITY<br>LEVEL</div>
+          <div class="humidity-icon">&#x1F4A7;</div>
+          <div class="humidity-display">
+            <span class="big-number" id="outdoor-humidity">--</span>
+            <span class="unit-label">%</span>
+          </div>
+        </div>
+
+        <!-- Row 3: Date/Time + Indoor -->
+        <div class="panel datetime-panel">
+          <div class="time-section">
+            <span class="ampm" id="ampm">AM</span>
+            <span class="time-display" id="time-display">--:--</span>
+          </div>
+          <div class="date-section">
+            <span class="date-month" id="date-month">---</span>
+            <span class="wireless-icon">&#x1F4E1;</span>
+            <span class="date-day" id="date-day">--</span>
+          </div>
+          <div class="day-section" id="day-name">-------</div>
+        </div>
+
+        <div class="panel indoor-panel">
+          <div class="panel-label top-label">INDOOR</div>
+          <div class="indoor-readings">
+            <div class="indoor-temp">
+              <span class="medium-number" id="indoor-temp">--</span>
+              <span class="unit-small">°F</span>
+            </div>
+            <div class="indoor-humidity-section">
+              <span class="indoor-humidity-label">HUMIDITY <span class="battery-icon-small">&#x1F50B;</span></span>
+              <div class="indoor-humidity-value">
+                <span class="medium-number" id="indoor-humidity">--</span>
+                <span class="unit-small">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="brand-bar">
+        <span class="brand-name">LA CROSSE<sup>&reg;</sup></span>
+        <span class="brand-sub">TECHNOLOGY</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="location-info">
+        <span id="location-name">Detecting location...</span>
+      </div>
+      <div class="control-row">
+        <label for="location-input">Location:</label>
+        <input type="text" id="location-input" placeholder="City name or lat,lon">
+        <button id="location-btn">Set</button>
+        <button id="geolocate-btn" title="Use my location">&#x1F4CD;</button>
+      </div>
+      <div class="control-row">
+        <label for="indoor-temp-input">Indoor Temp (°F):</label>
+        <input type="number" id="indoor-temp-input" value="74" min="30" max="120">
+        <label for="indoor-hum-input">Humidity (%):</label>
+        <input type="number" id="indoor-hum-input" value="21" min="0" max="100">
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
