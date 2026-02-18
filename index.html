@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Station Display</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <div class="station-wrapper">
+    <div class="station-frame">
+      <div class="lcd-screen">
+
+        <!-- Row 1: Forecast + Outdoor Temperature -->
+        <div class="panel forecast-panel">
+          <div class="panel-label top-label">FORECAST</div>
+          <div class="forecast-icons" id="forecast-icons">
+            <svg class="weather-icon large-icon" id="forecast-icon-main" viewBox="0 0 100 80"></svg>
+            <svg class="weather-icon small-icon" id="forecast-icon-trend" viewBox="0 0 80 64"></svg>
+          </div>
+          <div class="signal-bars" id="signal-bars">
+            <div class="bar bar-1 active"></div>
+            <div class="bar bar-2 active"></div>
+            <div class="bar bar-3 active"></div>
+            <div class="bar bar-4"></div>
+          </div>
+        </div>
+
+        <div class="panel outdoor-panel">
+          <div class="panel-label top-label">OUTDOOR
+            <svg class="battery-icon" viewBox="0 0 24 12" width="18" height="9">
+              <rect x="1" y="1" width="19" height="10" rx="1.5" fill="none" stroke="#4a4a32" stroke-width="1.5"/>
+              <rect x="20" y="3.5" width="3" height="5" rx="1" fill="#4a4a32"/>
+              <rect x="3" y="3" width="15" height="6" rx="0.5" fill="#4a4a32"/>
+            </svg>
+          </div>
+          <div class="temp-display">
+            <span class="big-number" id="outdoor-temp">--</span>
+            <span class="unit-label">°F</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Pressure + Humidity -->
+        <div class="panel pressure-panel">
+          <div class="pressure-section">
+            <div class="panel-label small-label">RELATIVE<br>PRESSURE</div>
+            <div class="pressure-value">
+              <span class="medium-number" id="pressure-value">--.-</span>
+              <span class="unit-small">inHg</span>
+            </div>
+          </div>
+          <div class="thermometer-icon">
+            <svg viewBox="0 0 24 60" width="16" height="40">
+              <rect x="8" y="2" width="8" height="38" rx="4" fill="none" stroke="#4a4a32" stroke-width="2"/>
+              <circle cx="12" cy="48" r="8" fill="none" stroke="#4a4a32" stroke-width="2"/>
+              <rect x="10" y="18" width="4" height="24" rx="2" fill="#4a4a32"/>
+              <circle cx="12" cy="48" r="5" fill="#4a4a32"/>
+            </svg>
+          </div>
+          <div class="pressure-history-section">
+            <div class="panel-label small-label">PRESSURE HISTORY</div>
+            <div class="pressure-chart" id="pressure-chart">
+              <div class="chart-bars">
+                <div class="chart-bar" data-hour="-24h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-18h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-12h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-9h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-6h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="-3h"><div class="bar-fill"></div></div>
+                <div class="chart-bar" data-hour="0h"><div class="bar-fill"></div></div>
+              </div>
+              <div class="chart-labels">
+                <span>-24h</span><span>-18h</span><span>-12h</span><span>-9h</span><span>-6h</span><span>-3h</span><span>0h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel humidity-panel">
+          <div class="panel-label">HUMIDITY<br>LEVEL</div>
+          <div class="humidity-icon">
+            <svg viewBox="0 0 20 28" width="16" height="22">
+              <path d="M10 2 C10 2 2 14 2 18 a8 8 0 0 0 16 0 C18 14 10 2 10 2z" fill="#4a4a32" stroke="none"/>
+            </svg>
+          </div>
+          <div class="humidity-display">
+            <span class="big-number" id="outdoor-humidity">--</span>
+            <span class="unit-label">%</span>
+          </div>
+        </div>
+
+        <!-- Row 3: Date/Time + Indoor -->
+        <div class="panel datetime-panel">
+          <div class="time-section">
+            <span class="ampm" id="ampm">AM</span>
+            <span class="time-display" id="time-display">--:--</span>
+          </div>
+          <div class="date-section">
+            <span class="date-month" id="date-month">---</span>
+            <svg class="wireless-icon" viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 20 a2 2 0 1 0 0 0.01z" fill="#4a4a32"/>
+              <path d="M6 14 a8.5 8.5 0 0 1 12 0" fill="none" stroke="#4a4a32" stroke-width="2" stroke-linecap="round"/>
+              <path d="M2 10 a14 14 0 0 1 20 0" fill="none" stroke="#4a4a32" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="date-day" id="date-day">--</span>
+          </div>
+          <div class="day-section" id="day-name">-------</div>
+        </div>
+
+        <div class="panel indoor-panel">
+          <div class="panel-label top-label">INDOOR</div>
+          <div class="indoor-readings">
+            <div class="indoor-temp">
+              <span class="medium-number" id="indoor-temp">--</span>
+              <span class="unit-small">°F</span>
+            </div>
+            <span class="indoor-separator">:</span>
+            <div class="indoor-humidity-section">
+              <span class="indoor-humidity-label">HUMIDITY
+                <svg class="battery-icon-small" viewBox="0 0 24 12" width="14" height="7">
+                  <rect x="1" y="1" width="19" height="10" rx="1.5" fill="none" stroke="#4a4a32" stroke-width="1.5"/>
+                  <rect x="20" y="3.5" width="3" height="5" rx="1" fill="#4a4a32"/>
+                  <rect x="3" y="3" width="15" height="6" rx="0.5" fill="#4a4a32"/>
+                </svg>
+              </span>
+              <div class="indoor-humidity-value">
+                <span class="medium-number" id="indoor-humidity">--</span>
+                <span class="unit-small">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="brand-bar">
+        <span class="brand-name">LA CROSSE<sup>&reg;</sup></span>
+        <span class="brand-sub">TECHNOLOGY</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="location-info">
+        <span id="location-name">Detecting location...</span>
+      </div>
+      <div class="control-row">
+        <label for="location-input">Location:</label>
+        <input type="text" id="location-input" placeholder="City name or lat,lon">
+        <button id="location-btn">Set</button>
+        <button id="geolocate-btn" title="Use my location">&#x1F4CD;</button>
+      </div>
+      <div class="control-row">
+        <label for="indoor-temp-input">Indoor Temp (°F):</label>
+        <input type="number" id="indoor-temp-input" value="74" min="30" max="120">
+        <label for="indoor-hum-input">Humidity (%):</label>
+        <input type="number" id="indoor-hum-input" value="21" min="0" max="100">
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
